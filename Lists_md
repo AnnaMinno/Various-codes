@@ -1,0 +1,12 @@
+saraksta_garums=int(input('Lūdzu izvēleties saraksta elementu skaitu: '))
+saraksts = [ ]
+skaititajs = 0
+while skaititajs < saraksta_garums:
+  skaitlis = int(input('Lūdzu ievadiet veselo skaitli: '))
+  saraksts.append(skaitlis)
+  skaititajs = skaititajs + 1
+print(saraksts)
+print (max(saraksts))
+print (min(saraksts))
+saraksts.sort()
+print(*saraksts)
