@@ -1,0 +1,21 @@
+import csv
+
+saraksts = []
+with open('paraugs.csv', newline='') as inputfile:
+    for row in csv.reader(inputfile):
+        saraksts.append(row[0])
+
+print(saraksts)
+
+datne = open("paraugs_dl.csv", 'r')
+reader = csv.reader(datne, delimiter=';')
+saraksts_dl = list(reader)
+print(saraksts_dl)
+
+
+
+with open("paraugs_dl.csv", 'r') as datne:
+    reader = csv.reader(datne, delimiter=';')
+    saraksts_dl = list(reader)
+    print(saraksts_dl)
+    print(saraksts_dl[0])
