@@ -1,0 +1,16 @@
+with open('paraugs.txt', 'r') as reader:
+   print(reader.read())
+
+
+
+lines = []
+with open('paraugs.txt') as file:
+    for line in file: 
+        line = line.strip() 
+        lines.append(line) 
+
+print(lines)
+
+
+for x in lines:
+  print(x)
