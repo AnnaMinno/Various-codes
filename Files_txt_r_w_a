@@ -1,0 +1,55 @@
+with open("hello.txt", "w") as f:
+    f.write("hello world\n")
+
+
+with open("hello.txt", "a") as f:
+    f.write("hello world2\n")
+
+with open("hello.txt", "r") as f:
+    hello = list(f)
+    print(hello)  
+
+for x in hello:
+  print(x)
+
+
+with open("hello_next.txt", "a") as hello_file:
+    print("\nHello, hello my world\n", file=hello_file)
+
+with open("hello_next.txt", "r") as f1:
+    hello_ne = list(f1)
+    print(hello_ne) 
+for x in hello_ne:
+  print(x)
+
+
+
+filename = "hello1.txt"
+with open(filename, encoding="cp1251") as file:
+    text = file.read()
+print(text)
+
+
+
+filename = "hello1.txt"
+with open(filename, encoding="utf8") as file:
+    text = file.read()
+print(text)
+
+filename = "messages.txt"
+messages = list()
+ 
+for i in range(4):
+    message = input("Ievadiet rindu " + str(i+1) + ": ")
+    messages.append(message + "\n")
+ 
+# ieraksīšana datnē
+with open(filename, "a") as file:
+    for message in messages:
+        file.write(message)
+ 
+# nolasīšana no datnes
+print("Nolasītie ziņojumi")
+with open(filename, "r") as file:
+    for message in file:
+        print(message, end="")
