@@ -1,0 +1,5 @@
+def LINK():
+  link = 'https://google.com'
+  mylink = 'Your_Usernames_and_Passwords{}'.format(link)
+----------------------------------------------
+CREATE_LINK.config(command=LINK)

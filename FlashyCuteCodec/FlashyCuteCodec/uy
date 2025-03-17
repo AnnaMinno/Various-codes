@@ -1,0 +1,42 @@
+  with open(file_to_read_from, 'rt') as rf: 
+    reader = csv.reader(rf, delimiter=',')
+    with open(file_to_read_from, 'w') as wf: 
+      writer = csv.writer(wf) 
+      for row in reader: 
+        if seq2 in row["Username"]: 
+           row["Username"] = row["Username"].replace(Username, seq2) 
+        writer.writerow(row)
+        if seq3 in row["Password"]: 
+           row["Password"] = row["Password"].replace(Pass, seq3) 
+        writer.writerow(row)
+
+
+def check_dups ():
+  file_to_read_from = 'UsernameAndPassword.csv'
+  Username, Pass = [], []
+  with open(file_to_read_from, 'r') as file_in:
+       with open(file_to_read_from, 'w') as wf:
+           reader = csv.DictReader(file_in, delimiter=',') 
+           writer = csv.writer(wf)
+         
+           counts = Counter(Username)
+           suffix_counter = defaultdict(lambda: itertools.count(1))
+           seq2 = [elem if counts[elem] == 1 else elem + f'_{next(suffix_counter[elem])}'
+          for elem in Username]
+
+           counts = Counter(Pass)
+           suffix_counter = defaultdict(lambda: itertools.count(1))
+           seq3 = [elem if counts[elem] == 1 else elem + f'_{next(suffix_counter[elem])}'
+          for elem in Pass]
+
+           for row in reader:
+               Username.append(row["Username"])
+               Pass.append(row["Password"])
+           for row in reader: 
+               if seq2 in row["Username"]: 
+                  row["Username"] = row["Username"].replace(Username, seq2) 
+                  writer.writerow(row)
+               if seq3 in row["Password"]: 
+                  row["Password"] = row["Password"].replace(Pass, seq3) 
+          
+           writer.writerow(row)

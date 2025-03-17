@@ -1,0 +1,44 @@
+import csv
+import string
+import requests
+import random
+from random import randint
+
+input_file = str(input(''))
+
+def username_generator ():
+   adj = 'https://raw.githubusercontent.com/hugsy/stuff/main/random-word/english-adjectives.txt'
+   noun = 'https://raw.githubusercontent.com/hugsy/stuff/main/random-word/english-nouns.txt'
+   r = requests.get(adj)
+   d = requests.get(noun)
+   text1 = r.text
+   text2 = d.text
+   word1 = text1.split()
+   word2 = text2.split()
+   random_number = randint(0,99)
+   random_number1 = randint(0,len(word1))
+   random_number2 = randint(0,len(word2))
+   x = word1[random_number1] + word2[random_number2] + str(random_number)
+   return''.join(x)
+
+def pass_generator(size = 8, chars = string.ascii_uppercase + string.ascii_lowercase + string.digits):
+   y = (random.choice(chars) for _ in range(size))
+   return ''.join(y)
+
+with open(input_file, 'r') as csvinput:
+    with open('UsernameAndPassword.csv', 'w') as csvoutput:
+        header = ["First Name","Last Name","Username","Password"]
+        writer = csv.writer(csvoutput, lineterminator='\n')
+        reader = csv.reader(csvinput)
+
+        next(reader)
+
+        all = []
+
+        for row in reader:
+            row.append(username_generator())
+            row.append(pass_generator())
+            all.append(row)
+
+        writer.writerow(header)
+        writer.writerows(all)

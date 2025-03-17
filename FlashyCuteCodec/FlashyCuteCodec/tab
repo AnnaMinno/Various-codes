@@ -1,0 +1,13 @@
+def OUTPUT():
+  with open("UsernameAndPassword.csv", newline = "") as file:
+   reader = csv.reader(file)
+    
+   r = 0
+   for col in reader:
+      c = 0
+      for row in col:
+         output = tkinter.Label(SCROLL, width = 10, height = 2, \
+                               text = row, relief = tkinter.RIDGE)
+         output.grid(row = r, column = c)
+         c += 1
+      r += 1
